@@ -61,12 +61,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^slim_") ; then
-       SLIM_BUILD=$(echo -n $1 | sed -e 's/^slim_//g')
+    if (echo -n $1 | grep -q -e "^rage_") ; then
+       RAGE_BUILD=$(echo -n $1 | sed -e 's/^rage_//g')
     else
-       SLIM_BUILD=
+       RAGE_BUILD=
     fi
-    export SLIM_BUILD
+    export RAGE_BUILD
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
@@ -488,7 +488,7 @@ function breakfast()
     CM_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/slim/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/rage/vendorsetup.sh 2> /dev/null`
         do
 echo "including $f"
             . $f
@@ -505,7 +505,7 @@ echo "z$target" | grep -q "-"
             lunch $target
         else
             # This is probably just the SLIM model name
-            lunch slim_$target-userdebug
+            lunch rage_$target-userdebug
         fi
 fi
 return $?
@@ -552,7 +552,7 @@ function lunch()
     check_product $product
     if [ $? -ne 0 ]
     then
-        # if we can't find a product, try to grab it off the SlimRoms github
+        # if we can't find a product, try to grab it off the RageRom github
         T=$(gettop)
         pushd $T > /dev/null
         build/tools/roomservice.py $product
