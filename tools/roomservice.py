@@ -200,7 +200,7 @@ def parse_device_from_folder(device):
     elif len(search) == 1:
         location = search[0]
     else:
-        print("Your device was not found. Attempting to retrieve device repository from berserkaosp Github..")
+        print("Your device was not found. Attempting to retrieve device repository from RageRom Github..")
         location = parse_device_from_manifest(device)
     return location
 
